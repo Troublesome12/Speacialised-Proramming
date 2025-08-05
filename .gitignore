@@ -54,4 +54,5 @@ coverage/
 .ipynb_checkpoints/
 
 # Miscellaneous
-Lectures/           # Your specific folder to ignore
+Lectures/           # Ignore the Lectures directory
+Lectures            # Ignore any file named 'Lectures' (no extension)
