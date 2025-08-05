@@ -1,0 +1,57 @@
+# OS-specific files
+.DS_Store           # macOS
+Thumbs.db           # Windows
+
+# Editor/IDE-specific files
+.vscode/            # Visual Studio Code
+.idea/              # JetBrains IDEs (e.g., PyCharm, IntelliJ)
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Dependency folders (generated)
+node_modules/       # Node.js
+vendor/             # PHP, Composer
+venv/               # Python virtual environment
+.env                # Environment variable files (should be kept secret)
+
+# Build and distribution folders
+dist/
+build/
+out/
+target/             # Java/Maven
+
+# Temporary or backup files
+*.tmp
+*.swp
+*.bak
+*.old
+*~
+
+# Compiled source code
+*.pyc               # Python
+*.class             # Java
+*.o                 # C/C++
+*.exe
+*.dll
+
+# Package management lock files (optional, team-dependent)
+package-lock.json   # Node.js (optional)
+yarn.lock           # Yarn (optional)
+Pipfile.lock        # Python (optional)
+
+# Coverage/test reports
+coverage/
+*.lcov
+
+# Database files
+*.sqlite
+*.db
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Miscellaneous
+Lectures/           # Your specific folder to ignore
