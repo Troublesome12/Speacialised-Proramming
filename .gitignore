@@ -1,10 +1,10 @@
 # OS-specific files
-.DS_Store           # macOS
-Thumbs.db           # Windows
+.DS_Store
+Thumbs.db
 
 # Editor/IDE-specific files
-.vscode/            # Visual Studio Code
-.idea/              # JetBrains IDEs (e.g., PyCharm, IntelliJ)
+.vscode/
+.idea/
 *.sublime-project
 *.sublime-workspace
 
@@ -12,16 +12,16 @@ Thumbs.db           # Windows
 *.log
 
 # Dependency folders (generated)
-node_modules/       # Node.js
-vendor/             # PHP, Composer
-venv/               # Python virtual environment
-.env                # Environment variable files (should be kept secret)
+node_modules/
+vendor/
+venv/
+.env
 
 # Build and distribution folders
 dist/
 build/
 out/
-target/             # Java/Maven
+target/
 
 # Temporary or backup files
 *.tmp
@@ -38,9 +38,9 @@ target/             # Java/Maven
 *.dll
 
 # Package management lock files (optional, team-dependent)
-package-lock.json   # Node.js (optional)
-yarn.lock           # Yarn (optional)
-Pipfile.lock        # Python (optional)
+package-lock.json
+yarn.lock
+Pipfile.lock
 
 # Coverage/test reports
 coverage/
@@ -54,5 +54,9 @@ coverage/
 .ipynb_checkpoints/
 
 # Miscellaneous
-Lectures/           # Ignore the Lectures directory
-Lectures            # Ignore any file named 'Lectures' (no extension)
+Lectures
+/Lectures/
+Lectures/
+**/Lectures/
+**/summary*
+
