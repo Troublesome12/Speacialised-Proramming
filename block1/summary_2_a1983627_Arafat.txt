@@ -12,12 +12,12 @@ solve each problem.
 [Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
 
 Problem1: Inchworm
-- Java Classes: ArrayList (add, get)
-- Main Idea: loop iteration
+- Java Classes: ArrayList (add, get).
+- Main Idea: loop iteration.
 
 Problem2: SquareOfDigits
-- Java Classes: java.lang.String (charAt, length), java.lang.Math (max)
-- Main Idea: nested loops, boundary checking, brute-force search
+- Java Classes: java.lang.String (charAt, length), java.lang.Math (max).
+- Main Idea: nested loops, boundary checking, brute-force search.
 
 *******************
 * Challenges *
@@ -59,6 +59,5 @@ Problem2:
 - Will start a solution with Brute Force and leter will try to improve with appropriate algorithm.
 
 7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
-- For problem1 I didn't use any language model
-- For problme2 initially I couldn't find any proper way to solve it, so I asked ChatGPT to give me hint so that I can focus my thinking to the right direction
-This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
+- For problem1 I didn't use any language model.
+- For problme2 initially I couldn't find any proper way to solve it, so I asked ChatGPT to give me hint so that I can focus my thinking to the right direction. This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
