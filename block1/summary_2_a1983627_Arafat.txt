@@ -1,4 +1,4 @@
-Course: COMP SCI 7007 – Specialised Programming, Semester 1/2025.
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
 Name: Sk Md Shariful Islam Arafat
 ID: a1983627
 Practice problem/Exam and number: Inchworm, SquareOfDigits
