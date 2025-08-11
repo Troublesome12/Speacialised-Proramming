@@ -12,8 +12,8 @@ solve each problem.
 [Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
 
 Problem1: AlternateColors
-- Java Classes: int Array.
-- Main Idea: loop iteration.
+- Java Classes: none (used primitive long and arrays).
+- Main Idea: mathematical observation of cycles; modular arithmetic.
 
 Problem2: ChangingString
 - Java Classes: java.lang.String (charAt, length), java.util.Arrays (sort), java.util.Collections (reverseOrder).
@@ -23,41 +23,42 @@ Problem2: ChangingString
 * Challenges *
 *******************
 Problem1:
-- Implemented with int Array to store all the colors, which caused unnecessary memory usage for large input ranges.
-- Later realized that it's better not to store on the data structure, rather directly find a solution.
+- Initially tried using arrays or ArrayList to store destruction sequence which was impossible due to very large input constraints.
+- Had to find an approach that calculates color directly without iteration.
 
 Problem2:
-- Ensuring all four corners were checked without indexes going out of bounds.
-- Correctly handling size of square (`size + 1` for side length).
+- Ensuring indexes don't go out of bounds.
+- Correctly handling all the cases.
 
 ************************
 * Solution Approach *
 ************************
 3. Approach:
 Problem1:
-- Wanted to find a solution first, which may not be the optimal.
-- Identified that a leaf is eaten only when its position is a multiplyable by both `rest` and `leaf`.
-- Initially, used ArrayList to store all the leaves but later removed ArrayList by not storing the leaves, rather directly checked if leaf is divisible by rest or not.
-- May be the problem is solveable by mathematical formula which will reduce the time complexity even more.
-- Now the Time complexity is O(n) but with mathematical formula it will be down to O(log n).
+- Observed destruction happens in cycles of red, green, blue balls repeatedly.
+- Calculated how many full cycles where all three colors exist: `fullCycles = min(r, g, b)`.
+- For `k` within full cycles, used modular arithmetic to directly find color.
+- For leftover balls, identified which colors remain, counted cycles again, and mapped `k` to color via simple indexing.
 
 Problem2:
-- Iterate through all possible top-left coordinates in the grid.
-- For each coordinate, try increasing square sizes while staying within bounds.
-- Compare the four corner characters and update maximum size when all match.
+- Computed absolute differences for each character between two strings.
+- Stored differences in an Integer array and sorted descending.
+- Used up to K changes to reduce differences by zeroing largest differences first.
+- If K still remained, applied changes on zero-difference characters by increasing total distance by 1 per forced change.
+- Summed the remaining differences as the minimized total distance.
 
 4. What did you learn from the problem?
-- Problem1: Learned the value of mathematical optimization to replace unnecessary iteration with a direct formula.
-- Problem2: Learned index management for 2D problems with nested loops.
+- Problem1: Learned how to apply mathematical observations to reduce memory and/or time complexity.
+- Problem2: Learned greedy algorithm and how to handle edge cases.
 
 5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
 - Improved algorithmic design efficiency and speed in Problem1.
-- Improved 2D iteration accuracy, deeper thinking ability and coding in Problem2.
+- Improved deeper thinking ability and coding in Problem2.
 
 6. What are your goals for the next practice problems? 
 - Further reduce algorithmic complexity where possible.  
 - Will start a solution with Brute Force and leter will try to improve with appropriate algorithm.
 
 7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
-- For problem1 I didn't use any language model.
-- For problme2 initially I couldn't find any proper way to solve it, so I asked ChatGPT to give me hint so that I can focus my thinking to the right direction. This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
+- For problem1 I initially solved by storing data into an Array which caused memory overflow, so I used Chat GPT to learn about a better approach. This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
+- For problme2 I didn't use any language model. 
