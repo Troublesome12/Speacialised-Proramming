@@ -1,9 +1,9 @@
 public class AlternateColors {
     
-    public String getColor (long r, long g, long b, long k) {
-        String[] temp = new String[(int) k + 1];
+    public String getColor(long r, long g, long b, long k) {
+        String[] temp = new String[(int) k + 3];
 
-        for (int i=0; i<=k; i++) {
+        for (int i=0; i<=k;) {
             for (int j=1; j<=3; j++) {
                 if ((j % 3 == 1) && (r > 0)) {
                     temp[i] = "RED";

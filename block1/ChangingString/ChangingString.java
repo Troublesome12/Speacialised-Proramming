@@ -18,9 +18,10 @@ public class ChangingString {
                 K--;
             else if (distances[i] > 0)
                 totalDistance += distances[i];
-            else if (K > 0)
+            else if (K > 0) {
                 totalDistance++;
                 K--;
+            }
         }
         return totalDistance;
     }
