@@ -1,0 +1,63 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: AlternateColors, ChangingString
+Week: 1
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: AlternateColors
+- Java Classes: int Array.
+- Main Idea: loop iteration.
+
+Problem2: ChangingString
+- Java Classes: java.lang.String (charAt, length), java.util.Arrays (sort), java.util.Collections (reverseOrder).
+- Main Idea: compute per-character absolute differences, sort differences descending, choose K positions to minimize distance, handle forced changes.
+
+*******************
+* Challenges *
+*******************
+Problem1:
+- Implemented with int Array to store all the colors, which caused unnecessary memory usage for large input ranges.
+- Later realized that it's better not to store on the data structure, rather directly find a solution.
+
+Problem2:
+- Ensuring all four corners were checked without indexes going out of bounds.
+- Correctly handling size of square (`size + 1` for side length).
+
+************************
+* Solution Approach *
+************************
+3. Approach:
+Problem1:
+- Wanted to find a solution first, which may not be the optimal.
+- Identified that a leaf is eaten only when its position is a multiplyable by both `rest` and `leaf`.
+- Initially, used ArrayList to store all the leaves but later removed ArrayList by not storing the leaves, rather directly checked if leaf is divisible by rest or not.
+- May be the problem is solveable by mathematical formula which will reduce the time complexity even more.
+- Now the Time complexity is O(n) but with mathematical formula it will be down to O(log n).
+
+Problem2:
+- Iterate through all possible top-left coordinates in the grid.
+- For each coordinate, try increasing square sizes while staying within bounds.
+- Compare the four corner characters and update maximum size when all match.
+
+4. What did you learn from the problem?
+- Problem1: Learned the value of mathematical optimization to replace unnecessary iteration with a direct formula.
+- Problem2: Learned index management for 2D problems with nested loops.
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Improved algorithmic design efficiency and speed in Problem1.
+- Improved 2D iteration accuracy, deeper thinking ability and coding in Problem2.
+
+6. What are your goals for the next practice problems? 
+- Further reduce algorithmic complexity where possible.  
+- Will start a solution with Brute Force and leter will try to improve with appropriate algorithm.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- For problem1 I didn't use any language model.
+- For problme2 initially I couldn't find any proper way to solve it, so I asked ChatGPT to give me hint so that I can focus my thinking to the right direction. This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
