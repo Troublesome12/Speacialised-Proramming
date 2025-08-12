@@ -19,7 +19,7 @@ public class PartySeats {
         int girlsSize = girls.size();
         int boysSize = boys.size();
 
-        if (girlsSize != boysSize) 
+        if ((girlsSize != boysSize) || (girlsSize <= 1)) 
             return new String[0];
 
         Collections.sort(boys);
