@@ -7,6 +7,10 @@ public class RugSizes {
         int j;
         ArrayList<Integer> multiplier = new ArrayList<Integer>();
 
+        if (area == 1) {
+            return area;
+        }
+        
         for(int i=1; i<area; i++) {
             if (area%i == 0) {
                 j = area/i;
