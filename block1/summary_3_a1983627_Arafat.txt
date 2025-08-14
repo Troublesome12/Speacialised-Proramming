@@ -1,0 +1,61 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: RugSizes, PartySeats
+Week: 3
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: RugSizes
+- Java Classes: ArrayList (add, size, get) – to store factors.
+- Main Idea: Basic arithmetic operations and loops.
+
+Problem2: PartySeats
+- Java Classes: ArrayList (add, get, size) – to store boy and girl names, java.util.Collections.sort – to sort names alphabetically.
+- Main Idea: Basic loops and string operations.
+
+*******************
+* Challenges *
+*******************
+RugSizes:
+- Understanding the conditions for rug dimensions - either atleast one odd side or both sides are equal.
+- Avoiding duplicate counting for similar dimensions (Eg. 5*6 and 6*5).
+
+PartySeats:
+- Ensuring the seating alternates between boys and girls correctly.
+- Handling odd/even count differences that make seating impossible.
+
+************************
+* Solution Approach *
+************************
+3. Approach:
+RugSizes:
+- Loop through possible factors of the given area.
+- Check if the conditions are satisfied or not.
+- Count only unique configurations.
+
+PartySeats:
+- Separate boys and girls into different lists.
+- Sort each list alphabetically.
+- Arrange them alternately starting with a girl, ensuring no rules are violated.
+
+4. What did you learn from the problem?
+- RugSizes: Learned how to handle constraints in problems.
+- PartySeats: Using ArrayList and Collections.sort for dynamic data handling.
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Algorithmic design and constraint handling.
+- Clean and efficient Java implementation.
+
+6. What are your goals for the next practice problems? 
+- Further reduce algorithmic complexity where possible.
+- Practice more list manipulation and sorting challenges. 
+- Will start a solution with Brute Force and leter will try to improve with appropriate algorithm.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Yes, I used ChatGPT just to know how can I sort a list, as I'm new in Java I didn't know that I can sort using Collection.
