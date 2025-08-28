@@ -1,30 +1,23 @@
 public class FibonacciDiv2 {
     
     public int find(int N) {
-        if (N == 0)
-            return N;
+        int a = 0;
+        int b = 1;
 
-        int temp1 = 0;
-        int temp2 = 1;
-        int temp3, temp4;
+        while (b < N) {
+            int c = a + b;
+            a = b;
+            b = c;
+        }
 
-        while (true) {
-            temp3 = temp1 + temp2;
-            
-            if (temp3 < N) {
-                temp1 = temp2;
-                temp2 = temp3;
-            }
-            else if (temp3 > N)
-                return Math.min(N-temp2, temp3-N);
-            else {
-                return 0;
-            }
-
-        } 
+        return Math.min(N-a, b-N);
     }
 
     public static void main(String[] args) {
-        System.out.println(new FibonacciDiv2().find(1000000));
+        System.out.println(new FibonacciDiv2().find(1));       // 0
+        System.out.println(new FibonacciDiv2().find(13));      // 0
+        System.out.println(new FibonacciDiv2().find(15));      // 2
+        System.out.println(new FibonacciDiv2().find(19));      // 2
+        System.out.println(new FibonacciDiv2().find(1_000_000)); // 167960
     }
 }
