@@ -1,8 +1,8 @@
 Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
 Name: Sk Md Shariful Islam Arafat
 ID: a1983627
-Practice problem/Exam and number: AlternateColors, ChangingString
-Week: 1
+Practice problem/Exam and number: MonstersValley2, QuickSums, FibonacciDiv2, NumberSplit
+Week: 5
 
 *******************
 * Description *
@@ -11,54 +11,91 @@ Week: 1
 solve each problem.
 [Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
 
-Problem1: AlternateColors
-- Java Classes: none (used primitive long and arrays).
-- Main Idea: mathematical observation of cycles; modular arithmetic.
+Problem1: MonstersValley2
+- Java Classes: java.util.Arrays (fill).
+- Main Idea: Dynamic programming with cost dimension. Track the maximum scariness achievable for each gold cost, then choose the minimal cost that allows survival.
 
-Problem2: ChangingString
-- Java Classes: java.lang.String (charAt, length), java.util.Arrays (sort), java.util.Collections (reverseOrder).
-- Main Idea: compute per-character absolute differences, sort differences descending, choose K positions to minimize distance, handle forced changes.
+Problem2: QuickSums
+- Java Classes: java.lang.String (charAt, length).
+- Main Idea: Depth-first search with backtracking over string splits. Each split is evaluated as a sum; pruning is applied when partial sum exceeds target. Leading zeros handled naturally.
+
+Problem3: FibonacciDiv2
+- Java Classes: none beyond primitives.
+- Main Idea: Iteratively generate Fibonacci numbers until bracketing N, then return the minimal distance to the nearest Fibonacci number.
+
+Problem4: NumberSplit
+- Java Classes: java.util.HashMap, java.util.Map (for memoization), java.lang.String (toCharArray).
+- Main Idea: DFS + memoization. Try all possible split positions of a number, multiply parts, recurse to longest sequence until reaching a single digit. Use memoization to avoid recomputation.
 
 *******************
 * Challenges *
 *******************
+2. What challenges have you faced to solve the given problems?
+
 Problem1:
-- Initially tried using arrays or ArrayList to store destruction sequence which was impossible due to very large input constraints.
-- Had to find an approach that calculates color directly without iteration.
+- Needed to design DP carefully: flipped the problem to “cost → max scariness” instead of “scariness → min cost”.
+- Handling very large dread values safely with long.
 
 Problem2:
-- Ensuring indexes don't go out of bounds.
-- Correctly handling all the cases.
+- Making sure all possible splits were covered.
+- Avoiding exponential blowup by pruning when sum exceeded target.
+
+Problem3:
+- Ensuring Fibonacci generation doesn’t overflow.
+- Terminating loop correctly once upper bound is found.
+
+Problem4:
+- Preventing infinite recursion and managing overlapping subproblems.
+- Correctly handling splits that produce leading zeros.
+- Ensuring efficiency with memoization.
 
 ************************
 * Solution Approach *
 ************************
-3. Approach:
+3. Discuss how you approach the problem and how you solve the problem.
+
 Problem1:
-- Observed destruction happens in cycles of red, green, blue balls repeatedly.
-- Calculated how many full cycles where all three colors exist: `fullCycles = min(r, g, b)`.
-- For `k` within full cycles, used modular arithmetic to directly find color.
-- For leftover balls, identified which colors remain, counted cycles again, and mapped `k` to color via simple indexing.
+- Initialize dp[c] = maximum scariness with c coins.
+- For each monster:  
+  • Bribe → increase cost and scariness.  
+  • Skip → allowed only if scariness ≥ dread[i].  
+- Answer is minimal c with dp[c] valid.
 
 Problem2:
-- Computed absolute differences for each character between two strings.
-- Stored differences in an Integer array and sorted descending.
-- Used up to K changes to reduce differences by zeroing largest differences first.
-- If K still remained, applied changes on zero-difference characters by increasing total distance by 1 per forced change.
-- Summed the remaining differences as the minimized total distance.
+- Use DFS recursion to insert “+” signs.  
+- Build numbers digit by digit, recursively compute remaining sum.  
+- Prune branch if sum already exceeds target.  
+- Track minimum additions over valid paths.
+
+Problem3:
+- Start with Fibonacci pair (0,1).  
+- Loop until Fibonacci ≥ N.  
+- Answer is min(N - lowerFib, upperFib - N).
+
+Problem4:
+- Convert number to string, try all split positions (bitmask).  
+- Multiply parts, recurse to compute sequence length.  
+- Memoize results in a hashmap to reuse subproblems.  
+- Return maximum sequence length.
 
 4. What did you learn from the problem?
-- Problem1: Learned how to apply mathematical observations to reduce memory and/or time complexity.
-- Problem2: Learned greedy algorithm and how to handle edge cases.
+- Problem1: Learned to reformulate DP problems by changing the perspective of state definition.  
+- Problem2: Learned recursive backtracking with pruning in small search space.  
+- Problem3: Practiced iterative generation and bounding technique.
+- Problem4: Strengthened recursive + memoization combination for efficiency.  
 
 5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
-- Improved algorithmic design efficiency and speed in Problem1.
-- Improved deeper thinking ability and coding in Problem2.
+- Improving DP formulation and efficiency (Problem1).  
+- Designing and pruning recursive solutions (Problem2).
+- Implementing iterative search logic cleanly (Problem3).
+- Combining recursion with memoization (Problem4).
 
 6. What are your goals for the next practice problems? 
-- Further reduce algorithmic complexity where possible.  
-- Will start a solution with Brute Force and leter will try to improve with appropriate algorithm.
+- Explore more DP + recursion hybrids.  
+- Get better at pruning conditions in backtracking problems.  
+- Continue reducing algorithmic complexity from brute force to optimal.  
 
 7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
-- For problem1 I initially solved by storing data into an Array which caused memory overflow, so I used Chat GPT to learn about a better approach. This helped ensure correctness, find inefficiencies, and improve solution clarity before final implementation.
-- For problme2 I didn't use any language model. 
+- For Problem1, Problem2, and Problem4 I used ChatGPT to validate my approaches, refine the DP/memoization logic, and simplify code.  
+- The tool helped me see alternative perspectives and learn more efficient ways to structure solutions, improving both my problem-solving skills and coding fluency.  
+- For problme3 I didn't use any language model.
