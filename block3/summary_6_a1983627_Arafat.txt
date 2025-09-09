@@ -1,0 +1,101 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: MonstersValley2, QuickSums, FibonacciDiv2, NumberSplit
+Week: 5
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: MonstersValley2
+- Java Classes: java.util.Arrays (fill).
+- Main Idea: Dynamic programming with cost dimension. Track the maximum scariness achievable for each gold cost, then choose the minimal cost that allows survival.
+
+Problem2: QuickSums
+- Java Classes: java.lang.String (charAt, length).
+- Main Idea: Depth-first search with backtracking over string splits. Each split is evaluated as a sum; pruning is applied when partial sum exceeds target. Leading zeros handled naturally.
+
+Problem3: FibonacciDiv2
+- Java Classes: none beyond primitives.
+- Main Idea: Iteratively generate Fibonacci numbers until bracketing N, then return the minimal distance to the nearest Fibonacci number.
+
+Problem4: NumberSplit
+- Java Classes: java.util.HashMap, java.util.Map (for memoization), java.lang.String (toCharArray).
+- Main Idea: DFS + memoization. Try all possible split positions of a number, multiply parts, recurse to longest sequence until reaching a single digit. Use memoization to avoid recomputation.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1:
+- Needed to design DP carefully: flipped the problem to “cost → max scariness” instead of “scariness → min cost”.
+- Handling very large dread values safely with long.
+
+Problem2:
+- Making sure all possible splits were covered.
+- Avoiding exponential blowup by pruning when sum exceeded target.
+
+Problem3:
+- Ensuring Fibonacci generation doesn’t overflow.
+- Terminating loop correctly once upper bound is found.
+
+Problem4:
+- Preventing infinite recursion and managing overlapping subproblems.
+- Correctly handling splits that produce leading zeros.
+- Ensuring efficiency with memoization.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1:
+- Initialize dp[c] = maximum scariness with c coins.
+- For each monster:  
+  • Bribe → increase cost and scariness.  
+  • Skip → allowed only if scariness ≥ dread[i].  
+- Answer is minimal c with dp[c] valid.
+
+Problem2:
+- Use DFS recursion to insert “+” signs.  
+- Build numbers digit by digit, recursively compute remaining sum.  
+- Prune branch if sum already exceeds target.  
+- Track minimum additions over valid paths.
+
+Problem3:
+- Start with Fibonacci pair (0,1).  
+- Loop until Fibonacci ≥ N.  
+- Answer is min(N - lowerFib, upperFib - N).
+
+Problem4:
+- Convert number to string, try all split positions (bitmask).  
+- Multiply parts, recurse to compute sequence length.  
+- Memoize results in a hashmap to reuse subproblems.  
+- Return maximum sequence length.
+
+4. What did you learn from the problem?
+- Problem1: Learned to reformulate DP problems by changing the perspective of state definition.  
+- Problem2: Learned recursive backtracking with pruning in small search space.  
+- Problem3: Practiced iterative generation and bounding technique.
+- Problem4: Strengthened recursive + memoization combination for efficiency.  
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Improving DP formulation and efficiency (Problem1).  
+- Designing and pruning recursive solutions (Problem2).
+- Implementing iterative search logic cleanly (Problem3).
+- Combining recursion with memoization (Problem4).
+
+6. What are your goals for the next practice problems? 
+- Explore more DP + recursion hybrids.  
+- Get better at pruning conditions in backtracking problems.  
+- Continue reducing algorithmic complexity from brute force to optimal.  
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- For Problem1, Problem2, and Problem4 I used ChatGPT to validate my approaches, refine the DP/memoization logic, and simplify code.  
+- The tool helped me see alternative perspectives and learn more efficient ways to structure solutions, improving both my problem-solving skills and coding fluency.  
+- For problme3 I didn't use any language model.
