@@ -1,0 +1,84 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: UnsealTheSafe, RGBStreet, MatchNumbersEasy
+Week: 6
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: UnsealTheSafe
+- Java Classes: java.util.Arrays (copyOf), arrays for DP states.
+- Main Idea: Dynamic programming on keypad adjacency. dp[len][digit] = number of passwords of given length ending at digit. Transition over neighbors.
+
+Problem2: RGBStreet
+- Java Classes: java.util.Arrays (copyOf).
+- Main Idea: DP for house painting. dp[i][c] = minimum cost up to house i if it’s painted color c. Transition avoids same color as previous.
+
+Problem3: MatchNumbersEasy
+- Java Classes: java.util.Arrays, java.lang.StringBuilder.
+- Main Idea: DP + greedy reconstruction. First compute maximum digits formable with matches. Then reconstruct lexicographically largest number by picking biggest valid digit at each step.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1:
+- Defining adjacency transitions correctly for keypad digits.
+- Making sure counts do not overflow int (needed long).
+
+Problem2:
+- Designing transitions that respect the “no same color for neighbors” constraint.
+- Avoiding mistakes in array updates when rolling DP states.
+
+Problem3:
+- Handling leading zero constraints when constructing the largest number.
+- Combining two objectives: maximize length first, then maximize lexicographic value.
+- Reconstruction required careful checking with DP feasibility to avoid dead ends.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1:
+- Built an adjacency list of keypad digits.
+- Used DP iteration from length 1 to N. 
+- For each digit, accumulated counts to its neighbors.
+- Summed all end states for final result.
+
+Problem2:
+- Parsed costs for each house into a 2D array. 
+- Started DP with costs of painting the first house.
+- For each subsequent house, computed cost of painting with each color by adding cost to minimum of previous two different colors.
+- Final answer was the minimum of last row.
+
+Problem3:
+- Precomputed DP table where dp[m] = maximum digits achievable with at most m matches.
+- Chose first digit separately (to prevent leading zero).
+- Reconstructed by always picking the largest possible digit that allows the rest to still reach maximum length with remaining matches.
+
+4. What did you learn from the problem?
+- Problem1: Learned how to model combinatorial constraints as adjacency-based DP. 
+- Problem2: Practiced classical DP optimization patterns with rolling arrays.  
+- Problem3: Learned to combine greedy and DP: use DP for feasibility and greedy for reconstruction.
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- DP state definition and optimization.  
+- Handling dual objectives (length + lexicographic) efficiently.
+- Clean reconstruction strategies after computing DP.
+
+6. What are your goals for the next practice problems? 
+- Strengthen use of graph-based shortest path techniques (0–1 BFS, Dijkstra with lexicographic costs).  
+- Improve ability to design DP for multi-criteria optimization. 
+- Explore hybrid strategies where greedy choices are validated by DP feasibility.  
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Yes, I used ChatGPT to verify adjacency lists, refine DP formulations, and understand reconstruction approaches.
+- It helped by showing alternative implementations (iterative DP, memoized DFS, matrix exponentiation), improving my understanding of trade-offs.
+- This guidance enhanced my fluency in applying DP and backtracking patterns effectively.
