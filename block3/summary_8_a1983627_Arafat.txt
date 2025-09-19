@@ -1,0 +1,95 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: CastleGuards, TimeTravellingCellar, ColorfulRabbits, MagicSpell
+Week: 8
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: CastleGuards
+- Java Classes: none beyond primitives and loops.
+- Main Idea: Count rows and columns that lack guards. Minimum required is max(emptyRows, emptyCols) since placing a guard at the intersection fixes both simultaneously.
+
+Problem2: TimeTravellingCellar
+- Java Classes: none beyond primitives and nested loops.
+- Main Idea: Brute force over all pairs of indices 𝑖≠𝑗. Compute profit[i] - decay[j] and track maximum.
+
+Problem3: ColorfulRabbits
+- Java Classes: java.util.HashMap (getOrDefault, put, entrySet).
+- Main Idea: Group replies by value. For each reply x, group size is x + 1. Use ceiling division to cover all rabbits in groups, then accumulate total.
+
+Problem4: MagicSpell
+- Java Classes: java.lang.StringBuilder (append, reverse, charAt, toString).
+- Main Idea: Collect all ‘A’ and ‘Z’, reverse their order, and rebuild string by replacing only those positions with reversed characters.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1:
+- Understanding that placing guards at row/column intersections minimizes count.
+- Initially attempted subtracting logic but corrected to direct max formulation.
+
+Problem2:
+- Remembering the constraint 𝑖≠𝑗.
+- Ensuring result is positive as guaranteed by the problem statement.
+
+Problem3:
+- Correctly applying ceiling division (cnt + groupSize - 1) / groupSize.
+- Avoiding undercounting when multiple incomplete groups are present.
+
+Problem4:
+- Making sure only A and Z are reversed, while other characters remain in place.
+- Careful indexing between original string traversal and reversed buffer.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1:
+- Scan rows for guards, increment missingRows if none found.
+- Scan columns similarly for missingCols.
+- Final result = max(missingRows, missingCols).
+
+Problem2:
+- Double loop over i and j. Skip if same index. 
+- Compute candidate = profit[i] - decay[j].
+- Keep track of maximum across all pairs.
+
+Problem3:
+- Build frequency map for replies.
+- For each reply value x, determine required groups as ceil(cnt / (x+1)).
+- Add groups * (x+1) to total.
+
+Problem4:
+- Extract all A and Z into a StringBuilder. Reverse it.
+- Traverse original string: if char is A/Z, replace with next reversed character; else copy as is.
+- Build final decrypted string.
+
+4. What did you learn from the problem?
+- Problem1: Learned to apply max instead of additive counting for dual coverage problems.
+- Problem2: Practiced brute-force optimization for small N and constraints analysis.
+- Problem3: Gained experience with frequency maps, grouping, and ceiling division in greedy counting problems.
+- Problem4: Practiced string reconstruction with selective reversal of subsets of characters.
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Clean definition of problem invariants (row/column coverage, grouping, reversal). 
+- Handling edge cases like single-element arrays or only one group of replies.
+- Efficient use of Java collections (HashMap, StringBuilder).
+
+6. What are your goals for the next practice problems? 
+- Strengthen use of greedy + DP hybrid strategies.
+- Improve in-place transformations and memory-optimized string handling.
+- Practice proofs of minimality for greedy solutions.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Yes, I used ChatGPT to validate algorithm correctness, simplify formulations (e.g., max(rowMissing, colMissing) for CastleGuards), and check for edge cases.
+- It provided cleaner implementations (like HashMap-based grouping for ColorfulRabbits) and highlighted pitfalls in earlier brute-force logic.
+- This guidance improved my ability to reason about minimal solutions and apply collection utilities effectively.

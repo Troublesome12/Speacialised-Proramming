@@ -1,48 +1,39 @@
 public class CastleGuards {
     public int missing(String[] castle) {
-
         int height = castle.length;
         int length = castle[0].length();
-        int count = 0;
-        boolean foundGuard = false;
 
+        int missingRows = 0;
+        int missingCols = 0;
+
+        boolean foundGuard;
 
         // Checking for each row
-        for(int i=0; i<=height-1; i++) {
+        for (int i = 0; i < height; i++) {
             foundGuard = false;
-            for(int j=0; j<=length-1; j++) {
+            for (int j = 0; j < length; j++) {
                 if (castle[i].charAt(j) == 'X') {
                     foundGuard = true;
                     break;
                 }
             }
-
-            if (!foundGuard) count++;
-
+            if (!foundGuard) missingRows++;
         }
 
-        int result = count;
-
         // Checking for each column
-        for(int i=0; i<=length-1; i++) {
+        for (int j = 0; j < length; j++) {
             foundGuard = false;
-            for(int j=0; j<=height-1; j++) {
-                if (castle[j].charAt(i) == 'X') {
+            for (int i = 0; i < height; i++) {
+                if (castle[i].charAt(j) == 'X') {
                     foundGuard = true;
                     break;
                 }
             }
-
-            if (!foundGuard) {
-                count--;
-                if (count < 0) {
-                    result++;
-                }
-            }
-
+            if (!foundGuard) missingCols++;
         }
 
-        return result;
+        // Final result: max of missing rows and missing cols
+        return Math.max(missingRows, missingCols);
     }
 
     public static void main(String[] args) {
