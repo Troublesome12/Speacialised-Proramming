@@ -2,20 +2,23 @@ import java.util.Arrays;
 
 public class CatGame {
     public int getNumber(int[] coordinates, int X) {
-        int n = coordinates.length;
         int ans = Integer.MAX_VALUE;
         Arrays.sort(coordinates);
+        int n = coordinates.length;
 
         for (int i = 0; i < n; i++) {
             int left = coordinates[i] - X;
-            int right = left + 2 * X;
+            int right = left + 2 * X;  // width of 2X defines all reachable area
 
             int min = Integer.MAX_VALUE;
             int max = Integer.MIN_VALUE;
 
             for (int c : coordinates) {
-                if (c < left) min = Math.min(min, c + X);
-                else if (c > right) max = Math.max(max, c - X);
+                if (c + X < left) {  // even moving right, this cat is still left of window
+                    min = Math.min(min, c + X);
+                } else if (c - X > right) {  // even moving left, still right of window
+                    max = Math.max(max, c - X);
+                }
             }
 
             if (min == Integer.MAX_VALUE && max == Integer.MIN_VALUE) ans = 0;
