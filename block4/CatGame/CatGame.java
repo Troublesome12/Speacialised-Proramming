@@ -4,11 +4,11 @@ public class CatGame {
         int maxPos = Integer.MIN_VALUE;
 
         for (int c : coordinates) {
-            minPos = Math.min(minPos, c + X);
-            maxPos = Math.max(maxPos, c - X);
+            minPos = Math.min(minPos, c - X);
+            maxPos = Math.max(maxPos, c + X);
         }
 
-        return Math.max(0, minPos - maxPos);
+        return Math.max(0, (maxPos - minPos) - 2 * X);
     }
 
     public static void main(String[] args) {
