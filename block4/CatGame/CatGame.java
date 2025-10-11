@@ -2,41 +2,38 @@ import java.util.Arrays;
 
 public class CatGame {
     public int getNumber(int[] coordinates, int X) {
-        int ans = Integer.MAX_VALUE;
         Arrays.sort(coordinates);
         int n = coordinates.length;
+        int best = Integer.MAX_VALUE;
 
-        for (int i = 0; i < n; i++) {
-            int left = coordinates[i] - X;
-            int right = left + 2 * X;  // width of 2X defines all reachable area
+        for (int k = 0; k <= n; k++) {
+            // first k cats move to +X, the rest move to -X
+            int minVal = Integer.MAX_VALUE;
+            int maxVal = Integer.MIN_VALUE;
 
-            int min = Integer.MAX_VALUE;
-            int max = Integer.MIN_VALUE;
-
-            for (int c : coordinates) {
-                if (c + X < left) {  // even moving right, this cat is still left of window
-                    min = Math.min(min, c + X);
-                } else if (c - X > right) {  // even moving left, still right of window
-                    max = Math.max(max, c - X);
-                }
+            if (k > 0) {
+                // +X group spans coordinates[0..k-1]
+                minVal = Math.min(minVal, coordinates[0] + X);
+                maxVal = Math.max(maxVal, coordinates[k - 1] + X);
+            }
+            if (k < n) {
+                // -X group spans coordinates[k..n-1]
+                minVal = Math.min(minVal, coordinates[k] - X);
+                maxVal = Math.max(maxVal, coordinates[n - 1] - X);
             }
 
-            if (min == Integer.MAX_VALUE && max == Integer.MIN_VALUE) ans = 0;
-            else if (min == Integer.MAX_VALUE) ans = Math.min(ans, max - right);
-            else if (max == Integer.MIN_VALUE) ans = Math.min(ans, left - min);
-            else ans = Math.min(ans, max - min);
+            best = Math.min(best, maxVal - minVal);
         }
-
-        return Math.max(0, ans);
+        return best;
     }
 
     public static void main(String[] args) {
         CatGame cg = new CatGame();
-        System.out.println(cg.getNumber(new int[]{-3, 0, 1}, 3)); 
-        System.out.println(cg.getNumber(new int[]{4, 7, -7}, 5));
-        System.out.println(cg.getNumber(new int[]{-100000000, 100000000}, 100000000)); 
-        System.out.println(cg.getNumber(new int[]{3,7,4,6,-10,7,10,9,-5},7));
-        System.out.println(cg.getNumber(new int[]{-4, 0, 4, 0},4));
-        System.out.println(cg.getNumber(new int[]{7},0));
+        System.out.println(cg.getNumber(new int[]{-3, 0, 1}, 3)); // 3
+        System.out.println(cg.getNumber(new int[]{4, 7, -7}, 5)); // 4
+        System.out.println(cg.getNumber(new int[]{-100000000, 100000000}, 100000000)); // 0
+        System.out.println(cg.getNumber(new int[]{3,7,4,6,-10,7,10,9,-5},7)); // 7
+        System.out.println(cg.getNumber(new int[]{-4, 0, 4, 0},4)); // 4
+        System.out.println(cg.getNumber(new int[]{7},0)); // 0
     }
 }
