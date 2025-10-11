@@ -12,8 +12,8 @@ solve each problem.
 [Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
 
 Problem1: CatGame
-- Java Classes: none beyond primitives and arrays.
-- Main Idea: Each cat can move ± X units; for all cats the final position ranges in [c – X, c + X]. The smallest possible difference is max(lefts) – min(rights) if non-overlapping or 0 if intervals overlap.
+- Java Classes: java.util.Arrays (sort).
+- Main Idea: Sort coordinates and consider a split index k (0…n). Move indices [0..k-1] to +X and [k..n-1] to −X. The span for a split is max(finals) − min(finals) computed from at most four candidates: {a0+X, a(k−1)+X, a(k)−X, a(n−1)−X} (when valid). Take the minimum over all k. Runs in O(n) after sort when computed carefully.
 
 Problem2: CellRemoval
 - Java Classes: java.util.ArrayList (add, get), java.util.List, java.util.Arrays (fill).
@@ -29,8 +29,8 @@ Problem3: RockStar
 2. What challenges have you faced to solve the given problems?
 
 Problem1:
-- Initially over-complicated with sorting and pairwise differences; later realized interval intersection simplifies to two extremes (max/min).
-- REdge case when X = 0 required explicit handling.
+- Multiple incorrect formulas (interval overlap and (max−min)−2X) failed on mixed-sign sets.
+- Needed a construction that simultaneously accounts for opposite-direction moves.
 
 Problem2:
 - Ensuring root deletion returns 0 cells.
@@ -47,9 +47,10 @@ Problem3:
 3. Discuss how you approach the problem and how you solve the problem.
 
 Problem1:
-- Iterate over coordinates to get max(c – X) and min(c + X).
-- Result = max(0, Lmax – Rmin).
-- O(n) solution avoiding sorting.
+- Sort all cat coordinates to make positional reasoning easier.
+- Assume there’s a single “split point” — cats on the left side jump right (+X), and cats on the right side jump left (−X).
+- For each possible split index k, compute the resulting min and max positions from both sides and find their difference (spread).
+- The smallest spread over all splits is the answer, giving the minimal possible distance between the farthest cats after all have moved.
 
 Problem2:
 - Constructed adjacency list of children from parent.
@@ -62,13 +63,13 @@ Problem3:
 - Analysed restrictions as state transitions to formulate closed expression.
 
 4. What did you learn from the problem?
-- Learned interval analysis and min-max logic for continuous range problems.
+- Prefer constructive extremal searches (CatGame split-index) over brittle algebraic bounds.
 - Applied tree DFS deletion pattern and leaf recount techniques.
 - Strengthened reasoning on greedy state transitions and conditional formula derivation.
 
 5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
-- Improving fluency with recursive DP and state compression.
-- Exploring mathematical formulation before coding for range and combinatorial problems.
+- Formalizing optimal substructure before coding (identify valid extremal configurations).
+- Edge-case harnesses for counterexamples (mixed signs, zero X, single element).
 - Refining memoization table structures and edge case validation.
 
 6. What are your goals for the next practice problems? 
