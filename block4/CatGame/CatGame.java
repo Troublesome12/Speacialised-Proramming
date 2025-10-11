@@ -1,14 +1,14 @@
 public class CatGame {
     public int getNumber(int[] coordinates, int X) {
-        int maxLeft = Integer.MIN_VALUE;
-        int minRight = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
 
         for (int c : coordinates) {
-            maxLeft = Math.max(maxLeft, c - X);
-            minRight = Math.min(minRight, c + X);
+            min = Math.min(min, c);
+            max = Math.max(max, c);
         }
 
-        return Math.max(0, maxLeft - minRight);
+        return Math.max(0, (max - min) - 2 * X);
     }
 
     public static void main(String[] args) {
