@@ -1,21 +1,30 @@
+import java.util.Arrays;
+
 public class CatGame {
     public int getNumber(int[] coordinates, int X) {
-        int result = Integer.MAX_VALUE;
+        int n = coordinates.length;
+        int ans = Integer.MAX_VALUE;
+        Arrays.sort(coordinates);
 
-        for (int mask = 0; mask < (1 << coordinates.length); mask++) {
+        for (int i = 0; i < n; i++) {
+            int left = coordinates[i] - X;
+            int right = left + 2 * X;
+
             int min = Integer.MAX_VALUE;
             int max = Integer.MIN_VALUE;
 
-            for (int i = 0; i < coordinates.length; i++) {
-                int pos = ((mask & (1 << i)) == 0)
-                        ? coordinates[i] - X
-                        : coordinates[i] + X;
-                min = Math.min(min, pos);
-                max = Math.max(max, pos);
+            for (int c : coordinates) {
+                if (c < left) min = Math.min(min, c + X);
+                else if (c > right) max = Math.max(max, c - X);
             }
-            result = Math.min(result, max - min);
+
+            if (min == Integer.MAX_VALUE && max == Integer.MIN_VALUE) ans = 0;
+            else if (min == Integer.MAX_VALUE) ans = Math.min(ans, max - right);
+            else if (max == Integer.MIN_VALUE) ans = Math.min(ans, left - min);
+            else ans = Math.min(ans, max - min);
         }
-        return result;
+
+        return Math.max(0, ans);
     }
 
     public static void main(String[] args) {
