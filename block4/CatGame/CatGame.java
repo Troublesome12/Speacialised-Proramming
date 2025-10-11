@@ -1,14 +1,21 @@
 public class CatGame {
     public int getNumber(int[] coordinates, int X) {
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
+        int result = Integer.MAX_VALUE;
 
-        for (int c : coordinates) {
-            min = Math.min(min, c);
-            max = Math.max(max, c);
+        for (int mask = 0; mask < (1 << coordinates.length); mask++) {
+            int min = Integer.MAX_VALUE;
+            int max = Integer.MIN_VALUE;
+
+            for (int i = 0; i < coordinates.length; i++) {
+                int pos = ((mask & (1 << i)) == 0)
+                        ? coordinates[i] - X
+                        : coordinates[i] + X;
+                min = Math.min(min, pos);
+                max = Math.max(max, pos);
+            }
+            result = Math.min(result, max - min);
         }
-
-        return Math.max(0, (max - min) - 2 * X);
+        return result;
     }
 
     public static void main(String[] args) {
