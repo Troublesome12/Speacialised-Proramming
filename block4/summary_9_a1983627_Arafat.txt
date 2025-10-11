@@ -1,0 +1,80 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: CatGame, CellRemoval, RockStar
+Week: 9
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: CatGame
+- Java Classes: none beyond primitives and arrays.
+- Main Idea: Each cat can move ± X units; for all cats the final position ranges in [c – X, c + X]. The smallest possible difference is max(lefts) – min(rights) if non-overlapping or 0 if intervals overlap.
+
+Problem2: CellRemoval
+- Java Classes: java.util.ArrayList (add, get), java.util.List, java.util.Arrays (fill).
+- Main Idea: Modelled the cell structure as a binary tree built from the parent array; used DFS to mark the deleted cell and its descendants and counted remaining leaf nodes.
+
+Problem3: RockStar
+- Java Classes: none beyond primitives and Math.min.
+- Main Idea: Handled transitions between fast/slow zones based on restrictions. If no fast-starting songs, start with slow zone; else calculate sequence length using greedy transitions and boundary conditions.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1:
+- Initially over-complicated with sorting and pairwise differences; later realized interval intersection simplifies to two extremes (max/min).
+- REdge case when X = 0 required explicit handling.
+
+Problem2:
+- Ensuring root deletion returns 0 cells.
+- Properly identifying leaf nodes that lose all children after deletion.
+- Avoided StackOverflow by using recursion limits and visited tracking.
+
+Problem3:
+- Logical errors in handling transition cases (fs = 0 or sf = 0).
+- Derived correct greedy formula through case analysis rather than simulation.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1:
+- Iterate over coordinates to get max(c – X) and min(c + X).
+- Result = max(0, Lmax – Rmin).
+- O(n) solution avoiding sorting.
+
+Problem2:
+- Constructed adjacency list of children from parent.
+- DFS to mark deleted subtree.
+- Counted remaining leaves that have no alive children.
+
+Problem3:
+- If no fast-start songs: use all SS + optionally 1 SF.
+- Else: add FF block, optional FS for transition, then SS block + min(sf, ss).
+- Analysed restrictions as state transitions to formulate closed expression.
+
+4. What did you learn from the problem?
+- Learned interval analysis and min-max logic for continuous range problems.
+- Applied tree DFS deletion pattern and leaf recount techniques.
+- Strengthened reasoning on greedy state transitions and conditional formula derivation.
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Improving fluency with recursive DP and state compression.
+- Exploring mathematical formulation before coding for range and combinatorial problems.
+- Refining memoization table structures and edge case validation.
+
+6. What are your goals for the next practice problems? 
+- practice digit-DP with additional properties (e.g. non-decreasing digits, divisibility constraints). 
+- optimize DFS depth management.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Yes, ChatGPT was used to verify algorithmic correctness and derive simplified formulas (e.g. max(0, Lmax – Rmin) for CatGame and the closed-form transition logic for RockStar).
+- This tool accelerated debugging and improved my ability to structure clean, efficient Java solutions for constraint-heavy problems.
