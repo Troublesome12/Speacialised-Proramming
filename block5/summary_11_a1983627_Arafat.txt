@@ -1,0 +1,97 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: ErdosNumber, BigBurger, FamilyTravel, SentenceDecomposition
+Week: 11
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: ErdosNumber
+- Java Classes: java.util.HashMap, java.util.HashSet, java.util.Queue, java.util.LinkedList, java.util.Arrays
+- Main Idea: Constructed an undirected co-authorship graph using adjacency lists and performed BFS starting from “ERDOS” to compute the minimal Erdos number (shortest path distance) for each author.
+
+Problem2: BigBurger
+- Java Classes: None beyond primitive arrays and Math.max
+- Main Idea: Simulated customer servicing sequentially, tracking currentTime (when the counter is free). Each customer either starts immediately or waits until the previous service ends. Tracked the maximum waiting time across all customers.
+
+Problem3: FamilyTravel
+- Java Classes: java.util.PriorityQueue, java.util.Arrays, java.util.Comparator, java.util.HashSet
+- Main Idea: Performed Dijkstra’s algorithm over an expanded state space (city, lastInterval) where lastInterval ensures non-increasing travel segments. Found the shortest valid route from city 0 to city 1.
+
+Problem4: SentenceDecomposition
+- Java Classes: java.util.Arrays, java.util.PriorityQueue, java.util.HashMap
+- Main Idea: Used Dynamic Programming with frequency-based anagram checks. Each valid word matches a substring if letter counts are equal, and cost = length − same-position letters. Computed minimum total transformation cost using dp[i] for prefixes.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1: ErdosNumber
+- Avoiding concurrent modification errors while updating publication lists.
+- Needed BFS approach instead of iterative edge propagation for correctness and simplicity.
+
+Problem2: BigBurger
+- Handling equal arrival times correctly in queue simulation.
+- Avoiding off-by-one errors when resetting currentTime after idle periods.
+
+Problem3: FamilyTravel
+- State-space explosion risk; required careful bounding (lastInterval ≤ 52).
+- Mapping characters to distances (‘a’-‘z’ = 1–26, ‘A’-‘Z’ = 27–52) correctly.
+
+Problem4: SentenceDecomposition
+- Efficient anagram detection for substrings without sorting every time.
+- Correctly counting transformation cost by comparing aligned positions.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1: ErdosNumber
+- Built a graph where each paper connects all its coauthors bidirectionally.
+- Used BFS from “ERDOS” to assign minimal collaborative distance to every author.
+- Collected results as AUTHOR [number] and sorted lexicographically.
+
+Problem2: BigBurger
+- Maintained a variable freeAt (counter’s availability).
+- For each arrival, computed waiting time = max(0, freeAt - arrival[i]).
+- Updated freeAt = max(arrival[i], freeAt) + service[i].
+
+Problem3: FamilyTravel
+- Expanded search space to include the last edge length as a constraint.
+- EDijkstra over (city, lastEdgeLength) ensures all future edges ≤ last.
+- The minimum distance to city 1 across all final states gives the answer.
+
+Problem4: SentenceDecomposition
+- For each index i in sentence, tried all valid words.
+- Checked if substring s[i..i+len) is an anagram of the word.
+- If valid, computed cost (length − equal letters) and updated dp[i] = min(cost + dp[i+len]).
+- Final answer = dp[0], or −1 if unreachable.
+
+4. What did you learn from the problem?
+- Leveraging graph BFS for distance-based relationship computation (ErdosNumber).
+- Applying simulation and greedy principles for sequential timing problems (BigBurger).
+- Designing stateful shortest-path algorithms under non-trivial constraints (FamilyTravel).
+- Using string frequency matching + DP for complex combinatorial optimization (SentenceDecomposition).
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Strengthening multi-state Dijkstra modeling skills.
+- Practicing anagram frequency optimization and DP transitions.
+- Writing efficient and bug-free BFS/DFS traversals with proper data structures.
+- Building clearer, modular code (avoiding special-case branches).
+
+6. What are your goals for the next practice problems? 
+- Work on advanced graph DP and bitmask states (e.g., Traveling Salesman variations).
+- Optimize substring DP with rolling hash or memoized frequency reuse.
+- Improve speed and clarity of complex simulations.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Yes, ChatGPT was used to validate algorithmic logic and ensure code correctness under all constraints.
+- Helped in refining state-space modeling for FamilyTravel and DP design for SentenceDecomposition.
+- Enabled faster debugging and better theoretical understanding of optimal algorithm patterns.
