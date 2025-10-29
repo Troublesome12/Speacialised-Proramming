@@ -1,0 +1,94 @@
+Course: COMP SCI 7007 – Specialised Programming, Semester 2/2025
+Name: Sk Md Shariful Islam Arafat
+ID: a1983627
+Practice problem/Exam and number: DengklekBuildingRoads, RoughStrings, HouseBuilding, RunLengthEncoding
+Week: 12
+
+*******************
+* Description *
+*******************
+1. List the problems you attempted, and Java API Classes and methods you used to
+solve each problem.
+[Eg. SlowKeyBoard: ArrayList (size, add, get), Arrays.sort]
+
+Problem1: DengklekBuildingRoads
+- Java Classes: None beyond primitive arrays and loops
+- Main Idea: Implemented a dynamic programming solution with bitmask states to count all valid road-building configurations under even-degree constraints. Precomputed combinatorial values and used modular arithmetic for efficiency.
+
+Problem2: RoughStrings
+- Java Classes: java.util.ArrayList
+- Main Idea: Counted letter frequencies and tested all possible target maximum frequencies to minimize the roughness (maxFreq − minFreq) after deleting up to n characters. Used combinational checks and greedy removal for overrepresented and underrepresented letters.
+
+Problem3: HouseBuilding
+- Java Classes: java.lang.Math
+- Main Idea: Iterated over all possible base height levels (0–9) and computed total effort to adjust each cell’s height to within [base, base+1]. The minimal effort over all bases represents the optimal leveling cost.
+
+Problem4: RunLengthEncoding
+- Java Classes: java.lang.StringBuilder, java.lang.Character
+- Main Idea: Used Dynamic Parsed the encoded string by reading digits as repetition counts followed by a letter. Decoded sequentially and tracked length to ensure it does not exceed 50. Returned "TOO LONG" if the decoded string exceeded the limit.
+
+*******************
+* Challenges *
+*******************
+2. What challenges have you faced to solve the given problems?
+
+Problem1: DengklekBuildingRoads
+- Managing exponential state transitions (2^K masks) while keeping computation within feasible limits.
+- Handling modular arithmetic precisely to prevent overflow errors.
+
+Problem2: RoughStrings
+- Correctly balancing removals between over- and underrepresented letters.
+- Handling edge cases where all letters could be removed or only one remains.
+
+Problem3: HouseBuilding
+- Ensuring correct rounding behavior when adjusting heights both upward and downward.
+- Avoiding redundant recalculations of the same base height configuration.
+
+Problem4: RunLengthEncoding
+- Properly handling multiple-digit counts (e.g., "50A").
+- Detecting overflow conditions early to avoid unnecessary string construction when output exceeds 50 characters.
+
+************************
+* Solution Approach *
+************************
+3. Discuss how you approach the problem and how you solve the problem.
+
+Problem1: DengklekBuildingRoads
+- Used dynamic programming on parity bitmasks to track even/odd degrees per node.
+- Precomputed combinatorial coefficients for possible edge distributions.
+- Applied modular arithmetic at each transition and selected the valid final state with all even degrees.
+
+Problem2: RoughStrings
+- Iterated through possible maximum frequencies from 1–50.
+- For each, simulated removals of excessive letters and used remaining deletions to remove smallest frequencies.
+- Computed minimal achievable roughness efficiently.
+
+Problem3: HouseBuilding
+- Tried all integer base heights (0–9).
+- Calculated cost to bring every cell into [base, base+1].
+- Selected minimal total adjustment cost.
+
+Problem4: RunLengthEncoding
+- Sequentially scanned digits to form repetition counts, followed by letter append.
+- Used early termination when cumulative decoded length exceeded 50.
+- Constructed output via StringBuilder for efficiency.
+
+4. What did you learn from the problem?
+- Advanced use of bitmask DP for combinatorial counting problems (DengklekBuildingRoads).
+- Frequency analysis and greedy optimization for character-based problems (RoughStrings).
+- Simplifying brute-force search with small constraints using constant-range iteration (HouseBuilding).
+- Safe string parsing and boundary checking for robust encoding/decoding logic (RunLengthEncoding).
+
+5. Which area you focused on improving (eg. speed, fluency, algorithmic design, coding)?  
+- Improving algorithmic design for DP and combinatorial problems.
+- Enhancing implementation accuracy for modular arithmetic and state-space enumeration.
+- Writing cleaner, testable code with strong edge-case coverage.
+
+6. What are your goals for the next practice problems? 
+- Explore graph-based DP and network flow optimizations.
+- Implement memoized backtracking for complex string problems.
+- Refine code style for clarity, modularity, and scalability.
+
+7. Have you used any AI tool such as ChatGPT? How have you used it and explain this tool is helping you to be a better problem solver?  
+- Used ChatGPT to validate algorithmic reasoning and confirm correctness of state transitions and boundary cases.
+- Helpful in formulating optimized DP state design and handling edge-case reasoning for combinatorial enumeration.
